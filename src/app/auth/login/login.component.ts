@@ -3,7 +3,6 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../shared/auth.service';
 import {LoginUser} from '../shared/login-user.model';
 import {Router} from '@angular/router';
-import {take} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -40,7 +39,7 @@ export class LoginComponent implements OnInit {
       this._auth.login(userLogin)
         .subscribe(token => {
           console.log('trying to login')
-          if(token) {
+          if(token && token.jwtToken) {
             this.router.navigateByUrl('pets');
           }
           else {
